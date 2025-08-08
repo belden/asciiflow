@@ -1,4 +1,4 @@
-FROM gcr.io/bazel-public/bazel:latest as build
+FROM gcr.io/bazel-public/bazel:latest AS build
 WORKDIR /build
 COPY . .
 RUN bazel build site/...
