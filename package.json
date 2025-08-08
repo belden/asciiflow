@@ -6,14 +6,20 @@
     "#asciiflow/*": "./*"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "webpack serve --mode=development",
+    "build": "webpack --mode=production",
+    "dev": "webpack serve --mode=development --hot",
+    "clean": "rm -rf dist",
+    "electron": "electron .",
+    "test": "mocha --require source-map-support/register 'client/**/*.spec.js' 'common/**/*.spec.js'"
   },
   "type": "module",
   "dependencies": {
     "@babel/core": "^7.23.9",
     "@babel/plugin-proposal-decorators": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
-    "@bazel/ibazel": "^0.12.4",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@types/chai": "^4.3.12",

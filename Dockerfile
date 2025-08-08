@@ -1,8 +1,10 @@
-FROM gcr.io/bazel-public/bazel:latest AS build
+FROM node:18-alpine AS build
 WORKDIR /build
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && pnpm install
 COPY . .
-RUN bazel build site/...
+RUN pnpm build
 
 FROM nginx:alpine
-COPY --from=build /build/bazel-bin/site /usr/share/nginx/html
+COPY --from=build /build/dist /usr/share/nginx/html
 EXPOSE 80
